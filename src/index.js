@@ -3,6 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App/App';
 import registerServiceWorker from './registerServiceWorker';
+import {applyMiddleware, createStore, combineReducers} from 'redux';
+import {Provider} from 'react-redux';
+import {logger} from 'redux-logger';
+const storeInstance = createStore(
+  //this is a reducer
+  combineReducers({
+      
+    
+ }),// a reducer is a function
+ applyMiddleware(logger),
+)
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+
+ReactDOM.render(<Provider store = {storeInstance}><App /></Provider>, document.getElementById('root'));
