@@ -3,17 +3,21 @@ import {connect} from 'react-redux';
 
 class Page1 extends Component{
 
-state = {
-    userData: ''
-}
+// state = {
+//     userData: ''
+// }
 
 
 handleChange = (event) =>{
-    this.setState({
-        userData: event.target.value
+    // this.setState({
+    //     userData: event.target.value
+    // })
+    let action = event.target.value
+    this.props.dispatch({
+        type: 'TODAYS_FEELING',
+        payload: action
     })
-    console.log(this.state.userData)
-    
+//    console.log(this.state.userData)
 }
 
 

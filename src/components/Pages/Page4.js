@@ -1,34 +1,32 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
 
-class Page5 extends Component{
-    state = {
-        userData: ''
-    }
-    
-    
-    handleChange = (event) =>{
-        this.setState({
-            userData: event.target.value
-        })
-        console.log(this.state.userData)
-        
-    }
-    
-    
-        render(){
-            return(
-                // console.log('5 loaded')
-                <div>
-                    <input placeholder = "Gernal Feedback?" onChange = {this.handleChange}/>
-                </div>
-            )
-        }
-    }
+class Page4 extends Component{
 
-const mapReduxStateToProps = (reduxState) =>({
+
+handleChange = (event) =>{
+
+    let action = event.target.value
+    this.props.dispatch({
+        type: 'TODAYS_GENERAL_FEEDBACK',
+        payload: action
+    })
+
+}
+
+
+    render(){
+        return(
+            <div>
+                <input placeholder = "General Feedback?" onChange = {this.handleChange}/>
+            </div>
+        )
+    }
+}
+
+
+const mapReduxStateToProps=(reduxState)=>({
     reduxState
 })
 
-
-export default connect(mapReduxStateToProps)(Page5);
+export default connect(mapReduxStateToProps)(Page4);
