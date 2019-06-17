@@ -10,7 +10,15 @@ app.use(express.static('build'));
 
 /** ---------- EXPRESS ROUTES ---------- **/
 
-
+app.post('/', (req,res)=>{
+    console.log(req.body)
+    // pool.query(`INSERT INTO "feedback" ("feeling", "understanding", "support", "comments") VALUES (4, 4, 5, 'Doing Great!');`)
+    // .then((result)=>{
+    //     res.sendStatus(200)
+    // }).catch((error)=>{
+    //     res.sendStatus('error', error)
+    // })
+})
 
 /** ---------- START SERVER ---------- **/
 app.listen(PORT, () => {

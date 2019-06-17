@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { HashRouter as Router, Route, Link}from 'react-router-dom';
+import {connect} from "react-redux"
 
 import './App.css';
 import Page1 from '../Pages/Page1'
@@ -11,6 +12,20 @@ import Page5 from '../Pages/Page5'
 import Home from '../Pages/Home'
 
 class App extends Component {
+
+   
+  handleSubmit = () =>{
+    console.log(this.props.reduxState)
+    axios({
+        method: 'POST',
+        url: '/',
+        data: this.props.reduxState
+    }).then((response)=>{
+        console.log(response)
+    })
+}
+
+
   render() {
     return (
       <Router>
@@ -20,26 +35,34 @@ class App extends Component {
           <h4><i>Don't forget it!</i></h4>
         </header>
         <br/>
-        <ul>
-          <li>
-              <Link to = "/"> Home </Link>
-          </li>
-          <li>
-              <Link to = "/page1"> page1 </Link>
-          </li>
-          <li>
-              <Link to = "/page2"> page2 </Link>
-          </li>
-          <li>
-              <Link to = "/page3"> page3 </Link>
-          </li>
-          <li>
-              <Link to = "/page4"> page4 </Link>
-          </li>
-          <li>
-              <Link to = "/page5"> page5 </Link>
-          </li>
-        </ul>
+              <Link to = "/Home"> Home </Link>
+
+        <footer className = "footer">
+            Todays Feels: 
+            {this.props.reduxState.todaysFeeling}
+            <br/><br/>
+            todays Support: 
+            {this.props.reduxState.todaysSupport}
+            <br/><br/>
+            todays Understanding: 
+            {this.props.reduxState.todaysUnderstanding}
+            <br/><br/>
+            gerenal Feedback: 
+            {this.props.reduxState.gernalFeedback}
+            <br/><br/>
+            {/* turnary */}
+            {
+            this.props.reduxState.todaysFeeling &&
+            this.props.reduxState.todaysSupport &&
+            this.props.reduxState.todaysUnderstanding &&
+            this.props.reduxState.gernalFeedback == true
+            ? 
+            <button onClick = {this.handleSubmit}> Submit </button>
+            : 
+            <button onClick = {this.alert}> Incomplete </button> 
+            } 
+            
+        </footer>
         <Route path = '/Home' exact = {true} component = {Home}/>
         <Route path = '/page1' exact = {true} component = {Page1}/>
         <Route path = '/page2' exact = {true} component = {Page2}/>
@@ -52,5 +75,8 @@ class App extends Component {
   }
 }
 
+const mapReduxStateToProps=(reduxState)=>({
+  reduxState
+})
 
-export default App;
+export default connect(mapReduxStateToProps)(App);

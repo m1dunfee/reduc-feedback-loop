@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
+import Home from '../Pages/Home'
+import "./Pages.css";
+import { HashRouter as Router, Route, Link}from 'react-router-dom';
+import axios from 'axios';
 
 class Page5 extends Component{
     state = {
@@ -14,14 +18,22 @@ class Page5 extends Component{
         console.log(this.state.userData)
         
     }
-    
+ 
     
         render(){
             return(
-                // console.log('5 loaded')
-                <div>
-                    <input placeholder = "Gernal Feedback?" onChange = {this.handleChange}/>
-                </div>
+                // make a table
+                <Router>
+                    <div className = 'card'>
+                    <br/><br/>
+                        THANKS!
+                        {/* add submit button and take out home link */}
+                        
+                        {/* <Link to = "/Home"> Home </Link> */}
+                        
+                    </div>
+                    <Route path = '/Home' exact = {true} component = {Home}/>
+                </Router>
             )
         }
     }
