@@ -55,7 +55,7 @@ class App extends Component {
             this.props.reduxState.todaysFeeling &&
             this.props.reduxState.todaysSupport &&
             this.props.reduxState.todaysUnderstanding &&
-            this.props.reduxState.gernalFeedback == true
+            this.props.reduxState.gernalFeedback
             ? 
             <button onClick = {this.handleSubmit}> Submit </button>
             : 
